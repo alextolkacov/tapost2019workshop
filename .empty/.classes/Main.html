@@ -1,0 +1,135 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Main</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">&lt;empty package name&gt;</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Main (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Main</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;import business.service.UserService;
+<i>2</i>&nbsp;import org.eclipse.jetty.util.MultiMap;
+<i>3</i>&nbsp;import org.eclipse.jetty.util.UrlEncoded;
+<i>4</i>&nbsp;import peristance.IUserRepository;
+<i>5</i>&nbsp;import peristance.InMemoryUserRepository;
+<i>6</i>&nbsp;import spark.ModelAndView;
+<i>7</i>&nbsp;import spark.template.freemarker.FreeMarkerEngine;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.util.HashMap;
+<i>10</i>&nbsp;import java.util.Map;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import static spark.Spark.*;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;/**
+<i>15</i>&nbsp; * Created by Alexander Pushkarev.
+<i>16</i>&nbsp; *
+<i>17</i>&nbsp; * 15.2.18
+<i>18</i>&nbsp; */
+<b class="nc"><i>19</i>&nbsp;public class Main {</b>
+<i>20</i>&nbsp;
+<b class="nc"><i>21</i>&nbsp;    private static IUserRepository repository = new InMemoryUserRepository();</b>
+<b class="nc"><i>22</i>&nbsp;    private static UserService service = new UserService();</b>
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;    public static void main(String[] args) {
+<b class="nc"><i>26</i>&nbsp;        service.setUserRepository(repository);</b>
+<i>27</i>&nbsp;
+<b class="nc"><i>28</i>&nbsp;        staticFiles.location(&quot;/public&quot;);</b>
+<b class="nc"><i>29</i>&nbsp;        get(&quot;/index&quot;, (req, res) -&gt; {</b>
+<b class="nc"><i>30</i>&nbsp;            Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</b>
+<b class="nc"><i>31</i>&nbsp;            model.put(&quot;status&quot;, &quot;N/A&quot;);</b>
+<b class="nc"><i>32</i>&nbsp;            model.put(&quot;users&quot;, service.getUserInfoList());</b>
+<b class="nc"><i>33</i>&nbsp;            return new FreeMarkerEngine().render(new ModelAndView(model, &quot;index.ftl&quot;));</b>
+<i>34</i>&nbsp;        });
+<b class="nc"><i>35</i>&nbsp;        post(&quot;/index&quot;, (req, res) -&gt; {</b>
+<b class="nc"><i>36</i>&nbsp;            MultiMap&lt;String&gt; params = new MultiMap&lt;&gt;();</b>
+<b class="nc"><i>37</i>&nbsp;            UrlEncoded.decodeTo(req.body(), params, &quot;UTF-8&quot;);</b>
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;
+<b class="nc"><i>40</i>&nbsp;            Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</b>
+<b class="nc"><i>41</i>&nbsp;            model.put(&quot;status&quot;,</b>
+<b class="nc"><i>42</i>&nbsp;                    service.addUser(</b>
+<b class="nc"><i>43</i>&nbsp;                            params.getString(&quot;username&quot;),</b>
+<b class="nc"><i>44</i>&nbsp;                            params.getString(&quot;name&quot;),</b>
+<b class="nc"><i>45</i>&nbsp;                            params.getString(&quot;password&quot;)</b>
+<i>46</i>&nbsp;                            )
+<i>47</i>&nbsp;            );
+<b class="nc"><i>48</i>&nbsp;            model.put(&quot;users&quot;, service.getUserInfoList());</b>
+<b class="nc"><i>49</i>&nbsp;            return new FreeMarkerEngine().render(new ModelAndView(model, &quot;index.ftl&quot;));</b>
+<i>50</i>&nbsp;        });
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-10-09 15:43</div>
+</div>
+</body>
+</html>

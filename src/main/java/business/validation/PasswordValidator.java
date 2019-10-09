@@ -31,7 +31,7 @@ public class PasswordValidator implements IFieldValidator {
         return ValidationError.getEmptyValidationError();
     }
 
-    private boolean doesConformToComplexityRules(String strToValidate) {
+    public boolean doesConformToComplexityRules(String strToValidate) {
         return strToValidate.matches(".*\\d.*") &&
                 strToValidate.matches(".*\\p{Alpha}.*");
     }

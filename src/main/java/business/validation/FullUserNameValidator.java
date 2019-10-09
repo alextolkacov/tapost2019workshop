@@ -1,7 +1,5 @@
 package business.validation;
 
-import java.util.Optional;
-
 /**
  * Created by Alexander Pushkarev.
  *

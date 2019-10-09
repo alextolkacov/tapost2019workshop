@@ -9,9 +9,7 @@ import java.util.Optional;
  */
 public interface IFieldValidator {
 
-    default String getFieldName() {
-        return "Field";
-    }
+    String getFieldName();
 
     /**
      * Cool default method to be used in most places
@@ -23,6 +21,4 @@ public interface IFieldValidator {
         }
         return ValidationError.getEmptyValidationError();
     }
-
-
 }

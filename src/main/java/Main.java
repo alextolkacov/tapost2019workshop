@@ -1,7 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
-import business.User;
 import business.service.UserService;
 import org.eclipse.jetty.util.MultiMap;
 import org.eclipse.jetty.util.UrlEncoded;
@@ -10,10 +6,10 @@ import peristance.InMemoryUserRepository;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
-import static spark.Spark.redirect;
-import static spark.Spark.staticFiles;
+import java.util.HashMap;
+import java.util.Map;
+
+import static spark.Spark.*;
 
 /**
  * Created by Alexander Pushkarev.
@@ -53,5 +49,4 @@ public class Main {
             return new FreeMarkerEngine().render(new ModelAndView(model, "index.ftl"));
         });
     }
-
 }

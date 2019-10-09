@@ -13,7 +13,7 @@ public class ValidationError {
 
     private String errorMessage;
 
-    private ValidationError(String errorMessage) {
+    public ValidationError(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

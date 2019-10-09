@@ -43,7 +43,6 @@ public class UserService {
         List<User> users = userRepository.getUsers();
         List<String> userInfo = new ArrayList<>();
         for(User user : users) {
-            //Yes, writing code THAT bad. Brute force and no lambdas
             userInfo.add("Name: " + user.getFullUserName() +
             " login: " + user.getUserLogInName() + " password " +
             user.getPassword());
@@ -55,7 +54,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    private Optional<ValidationError> validateFields(String login, String fullUserName, String password) {
+    public Optional<ValidationError> validateFields(String login, String fullUserName, String password) {
         Optional<ValidationError> loginValidationError = validateLogin(login);
         if (loginValidationError.isPresent()) {
             return loginValidationError;
